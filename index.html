@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="inputBox" placeholder="0" />
+
+        <div class="buttons">
+            <button id="mic" class="operator" title="try saying (calculate 1+1)">🎤</button>
+            <button id="clear" class="operator">C</button>
+            <button id="backspace" class="operator">⌫</button>
+
+            <button class="operator">÷</button>
+
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operator">x</button>
+
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="operator">-</button>
+
+
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="operator">+</button>
+            <button>0</button>
+
+            <button>.</button>
+            <button id="toggleAdvanced" class="operator" title="more">[..]</button>
+            <button class="equalBtn">=</button>
+
+        </div>
+        
+        <!-- Advanced calculations panel -->
+        <div id="advancedPanel">
+            <button class="adv-btn" id="percent">%</button>
+            <button class="adv-btn">()</button>
+            <button class="adv-btn">sin</button>
+            <button class="adv-btn">cos</button>
+            <button class="adv-btn">tan</button>
+            <button class="adv-btn">log</button>
+            <button class="adv-btn">^</button>
+            <button class="adv-btn">✓</button>
+            <button class="adv-btn">π</button>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.11.1/lib/browser/math.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voice Calculator</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #222;
+      color: #fff;
+    }
+
+    #output {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      background: #fb7c14;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff9740;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎤 Voice Calculator</h1>
+  <button onclick="startListening()">Start Speaking</button>
+  <div id="output">Waiting for input...</div>
+
+  <script>
+    const output = document.getElementById('output');
+
+    function startListening() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spokenText = event.results[0][0].transcript.toLowerCase();
+        output.innerText = `You said: "${spokenText}"`;
+
+        // Example: convert speech to math expression
+        let expression = spokenText
+          .replace(/plus/g, '+')
+          .replace(/minus/g, '-')
+          .replace(/times|multiply by/g, '*')
+          .replace(/divided by|over/g, '/')
+          .replace(/into/g, '*');
+
+        try {
+          let result = eval(expression);
+          output.innerText += `\n= ${result}`;
+        } catch (e) {
+          output.innerText += `\n❌ Couldn't calculate`;
+        }
+      };
+
+      recognition.onerror = function (event) {
+        output.innerText = 'Error: ' + event.error;
+      };
+    }
+  </script>
+</body>
+</html>
