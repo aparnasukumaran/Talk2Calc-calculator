@@ -114,8 +114,8 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 if (SpeechRecognition) {
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
-    recognition.interimResults = true; 
-    recognition.continuous = false; 
+    recognition.interimResults = true;
+    recognition.continuous = false;
 
     micBtn.addEventListener('click', () => {
         recognition.start();
@@ -140,7 +140,7 @@ if (SpeechRecognition) {
 
         // Show live transcript
         if (interimTranscript) {
-            input.value = interimTranscript;
+            input.value = interimTranscript.replace(/\b(what is|calculate|equals|equal to|the answer is)\b/gi, '').trim();
         }
 
         // Process final speech
@@ -165,10 +165,21 @@ if (SpeechRecognition) {
 function processSpeech(speech) {
     console.log("Speech input:", speech);
 
+    // Step 1: Convert number words to digits
+    const numbersMap = {
+        zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5,
+        six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+        eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15,
+        sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20
+    };
+    speech = speech.replace(/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\b/gi, match => {
+        return numbersMap[match.toLowerCase()];
+    });
+
+    // Step 2: Replace words with operators/functions
     let parsed = speech
         .replace(/\b(what is|is|calculate|equals|equal to|the answer is)\b/g, '')
 
-        
         .replace(/\bsine\b/g, 'sin')
         .replace(/\bsine of\b/g, 'sin')
         .replace(/\bsign\b/g, 'sin')
@@ -179,47 +190,33 @@ function processSpeech(speech) {
         .replace(/\btangent\b/g, 'tan')
         .replace(/\broot of\b/g, 'sqrt')
         .replace(/\broute\b/g, 'sqrt')
-        .replace(/\broute of\b/g, 'sqrt')
-        .replace(/\broot\b/g, 'sqrt')
-        .replace(/\bplate\b/g, '+ 8')
         .replace(/\bpi\b|\bpai\b|\bpie\b/gi, 'pi')
-        .replace(/\bplate\b/g, '+')
 
-        //  operators
         .replace(/\bplus\b/g, '+')
         .replace(/\bminus\b/g, '-')
-        .replace(/\b(in to)\b/g, '*')
-        .replace(/\b(x|ex|times|multiply by|multiplied by|into)\b/g, '*')
+        .replace(/\b(in to|into)\b/g, '*')
+        .replace(/\b(x|ex|times|multiply by|multiplied by)\b/g, '*')
         .replace(/\b(divided by|divide|over)\b/g, '/')
 
-        // Percent
         .replace(/(\d+)\s*percent of\s*(\d+)/gi, '($1*0.01*$2)')
-        .replace(/(\d+)\s*percentage of\s*(\d+)/gi, '($1*0.01*$2)')
         .replace(/(\d+)\s*percent\b/gi, '($1*0.01)')
-        .replace(/(\d+)\s*percentage\b/gi, '($1*0.01)')
 
-        //  numbers
         .replace(/\bsin\s*([0-9.]+)\b/gi, 'sin($1 deg)')
         .replace(/\bcos\s*([0-9.]+)\b/gi, 'cos($1 deg)')
         .replace(/\btan\s*([0-9.]+)\b/gi, 'tan($1 deg)')
-
-        // Square root numbers
         .replace(/\bsqrt\s*([0-9.]+)\b/gi, 'sqrt($1)')
 
         .trim();
 
-    console.log("Parsed expression before autoclose:", parsed);
+    console.log("Parsed expression:", parsed);
 
-    let cleanExpr = parsed.replace(/÷/g, '/').replace(/x/g, '*');
-    cleanExpr = autoCloseParens(cleanExpr);
-
+    // Step 3: Evaluate
     try {
-        let result = math.evaluate(cleanExpr);
+        let result = math.evaluate(parsed);
         input.value = result;
         expression = result.toString();
     } catch (err) {
         input.value = "Error";
-        expression = '';
         console.error("Math evaluate error:", err.message);
     }
 }
