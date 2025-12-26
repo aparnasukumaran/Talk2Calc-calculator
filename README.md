@@ -27,6 +27,6 @@ Frontend / Static Website
 ## Purpose of the Project
 This project was created to explore Web Speech API integration with JavaScript and to build a functional voice-enabled calculator for an enhanced user experience.
 
-## 🙋‍♂️ Author
+## Author
 - Aparna krishna u s 
-- GitHub Repo: https://github.com/aparnasukumaran/Talk2Calc.git
+- GitHub Repo: https://github.com/aparnakrishnaus/Talk2Calc-calculator.git
