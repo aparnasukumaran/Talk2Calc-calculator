@@ -3,7 +3,7 @@
 A voice-enabled calculator that allows hands-free calculation using voice commands, designed for both desktop and mobile users.
 
 ## Live Preview
-https://aparnakrishnaus.github.io/Talk2Calc-calculator/
+https://talktocalc.netlify.app/
 
 ## Features
 - Supports voice commands for hands-free use
