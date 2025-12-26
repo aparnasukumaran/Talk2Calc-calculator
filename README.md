@@ -1,36 +1,32 @@
-[# TalkTo Calculator (Voice-Enabled App)
+## TalkTo Calculator (Voice-Enabled App)
 
 A voice-enabled calculator that allows hands-free calculation using voice commands, designed for both desktop and mobile users.
 
-## 🔗 Live Preview
-https://aparnasukumaran.github.io/Talk2Calc-calculator/
+## Live Preview
+https://aparnakrishnaus.github.io/Talk2Calc-calculator/
 
-## 🌟 Features
+## Features
 - Supports voice commands for hands-free use
 - Provides instant results with proper error handling
 - Perform basic (addition, subtraction, multiplication, division) and advanced calculations
 - Fully responsive design for mobile and desktop
 - Clean and minimal UI for better user experience
 
-## 🛠️ Technologies Used
+## Technologies Used
 - HTML5
 - CSS3
 - JavaScript
 - Web Speech API
 
-## 📸 Screenshots
+## Screenshots
 <img width="450" alt="calculator" src="https://github.com/user-attachments/assets/87328fcf-6033-49b2-8221-dc8d2a342c64" />
 
-## 📌 Project Type
+## Project Type
 Frontend / Static Website
 
-## 🎯 Purpose of the Project
+## Purpose of the Project
 This project was created to explore Web Speech API integration with JavaScript and to build a functional voice-enabled calculator for an enhanced user experience.
 
-## 📌 Project Status
-Completed
-
 ## 🙋‍♂️ Author
-Aparna krishna u s 
-GitHub: https://github.com/aparnasukumaran
-](https://aparnasukumaran.github.io/Butterlace-pastryshop/)
+- Aparna krishna u s 
+- GitHub Repo: https://github.com/aparnasukumaran/Talk2Calc.git
