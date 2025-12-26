@@ -5,6 +5,9 @@ A voice-enabled calculator that allows hands-free calculation using voice comman
 ## Live Preview
 https://talktocalc.netlify.app/
 
+## GitHub Repository
+https://github.com/aparnakrishnaus/Talk2Calc-calculator.git
+
 ## Features
 - Supports voice commands for hands-free use
 - Provides instant results with proper error handling
@@ -29,4 +32,3 @@ This project was created to explore Web Speech API integration with JavaScript a
 
 ## Author
 - Aparna krishna u s 
-- GitHub Repo: https://github.com/aparnakrishnaus/Talk2Calc-calculator.git
